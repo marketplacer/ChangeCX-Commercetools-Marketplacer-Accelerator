@@ -82,7 +82,3 @@ The screenshot shows the front-end application that uses the commercetools to pr
 
 The integration between Marketplacer and commercetools provides a powerful solution for real-time sharing of information between the two systems. The webhook mechanism, GraphQL queries, and endpoint functions work together to ensure that product, variant, and seller information is seamlessly shared, resulting in real-time updates and increased visibility for products on the commercetools platform. Additionally, the integration allows to show the products, variants, sellers and ads on a front-end application. This integration provides a flexible and scalable solution that can be adapted to suit the specific needs and constraints of an organization. By implementing this integration, organizations can improve the efficiency and accuracy of their product management and promotion efforts.
 
-![image](https://user-images.githubusercontent.com/118915499/222575689-83124961-0b35-4249-a448-4a641ddd142c.png)
-
-
-
