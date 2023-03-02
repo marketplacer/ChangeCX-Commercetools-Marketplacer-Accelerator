@@ -1,0 +1,26 @@
+query($id:ID!)
+{node(id:$id)
+  {...on Variant{
+    __typename
+    id
+    barcode
+    sku
+    countOnHand
+    lowestPrice
+    advert
+    {
+      ...on Advert
+      {
+        id
+        legacyId
+        title
+        fullTitle
+        description
+        brand {
+          name
+        }
+        displayImage {
+        url
+        }
+      }
+    }}}}

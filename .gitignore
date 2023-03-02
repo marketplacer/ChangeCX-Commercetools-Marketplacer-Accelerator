@@ -1,0 +1,17 @@
+node_modules
+
+### Gradle ###
+.gradle
+/build/
+
+### Java ###
+*.class
+
+### Intellij ###
+.idea
+
+*.iml
+.DS_Store
+*.zip
+
+target

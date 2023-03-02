@@ -1,0 +1,38 @@
+query($id:ID!){node(id:$id){
+  ...on  Advert{
+    __typename
+        id
+        legacyId
+        title
+        fullTitle
+        description
+        brand {
+          name
+        }
+        displayImage {
+        url
+        }
+    seller{
+      businessName
+    }
+    variants{
+      edges{
+        node {
+        id
+        barcode
+        sku
+        countOnHand
+        lowestPrice
+        advert
+        optionValues {
+            nodes {
+                name
+                optionType {
+                name
+                }
+            }
+        }
+       }
+      }
+    }
+  }}}

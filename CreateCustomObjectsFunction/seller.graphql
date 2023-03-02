@@ -1,0 +1,26 @@
+query($id:ID!)
+{
+  node(id:$id)
+  {
+    ...on Seller
+    {
+      __typename
+      id
+      businessName
+      businessNumber
+      emailAddress
+      logoUrl
+      marketplaceShippingRulesEnabled
+      openingHours
+      phone
+      sellerRating
+      storeDescription
+      youtubeVideoUrl
+      address {
+        fullAddress
+        mapUrl
+      }
+
+    }
+  }
+}
