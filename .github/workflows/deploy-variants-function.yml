@@ -1,0 +1,27 @@
+name: Deploy Variants GCP Function
+
+on:
+  push:
+    paths:
+      - 'CreateVariantsFunction/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y google-cloud-sdk
+    - name: Authenticate with GCP
+      run: |
+        echo "$GOOGLE_APPLICATION_CREDENTIALS" > /tmp/service-account.json
+        gcloud auth activate-service-account --key-file /tmp/service-account.json      
+      env:
+        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+    - name: Deploy CreateVariantsFunction
+      run:  |
+          gcloud functions deploy --project marketplacer-ct-poc --runtime java11 --entry-point functions.CreateVariant CreateVariantsFunction --source CreateVariantsFunction --trigger-http --allow-unauthenticated --quiet
+      env:
+        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
