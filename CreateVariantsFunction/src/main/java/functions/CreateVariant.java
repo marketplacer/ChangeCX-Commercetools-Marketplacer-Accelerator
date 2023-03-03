@@ -29,14 +29,16 @@ public class CreateVariant implements HttpFunction {
 
     private static final Logger logger = Logger.getLogger(CreateVariant.class.getName());
 
+    private static final ConfigReader configReader = new ConfigReader();
+
     public static ProjectApiRoot createApiClient() {
         final ProjectApiRoot apiRoot = ApiRootBuilder.of()
                 .defaultClient(ClientCredentials.of()
-                                .withClientId("<<clientId>>")
-                                .withClientSecret("<<clientSecret>>")
+                                .withClientId(configReader.getClientId())
+                                .withClientSecret(configReader.getSecret())
                                 .build(),
                         ServiceRegion.GCP_US_CENTRAL1)
-                .build("<<projectId>>");
+                .build(configReader.getProjectId());
         return apiRoot;
     }
 
@@ -59,7 +61,6 @@ public class CreateVariant implements HttpFunction {
                 writer.write(gson.toJson(jsonResponse));
                 logger.info("Product created: " + productId);
             } else {
-                //jsonResponse.addProperty("originalRequest", requestBody);
                 updateProduct(product.get(), marketplacerRequest);
                 jsonResponse.addProperty("updatedProduct", product.get().getId());
                 writer.write(gson.toJson(jsonResponse));
@@ -79,8 +80,8 @@ public class CreateVariant implements HttpFunction {
         List<ProductVariantDraft> variants = createProductVariantDraft(marketplacerRequest);
         ProductVariantDraft master = variants.get(0);
         variants.remove(0);
-        final Reference categoryReference = ReferenceBuilder.of().categoryBuilder().id("c10fb35a-cb34-4294-8831-628b4f773dea").build();
-        final Reference childCat = ReferenceBuilder.of().categoryBuilder().id("5f20b8cb-b374-4280-8599-6fcd22dcde48").build();
+        final Reference categoryReference = ReferenceBuilder.of().categoryBuilder().id(configReader.getRootCategory()).build();
+        final Reference childCat = ReferenceBuilder.of().categoryBuilder().id(configReader.getChildCategory()).build();
         List categories = new ArrayList();
         categories.add(categoryReference);
         categories.add(childCat);
@@ -91,7 +92,7 @@ public class CreateVariant implements HttpFunction {
                                 .addValue("en", marketplacerRequest.getPayload().getData().getNode().getTitle())
 
                 )
-                .productType(typeBuilder -> typeBuilder.id("26ac6058-dbfe-4003-8502-77d1c7201642"))
+                .productType(typeBuilder -> typeBuilder.key(configReader.getMainProductType()))
                 .key(marketplacerRequest.getPayload().getData().getNode().getLegacyId())
                 .slug(stringBuilder ->
                         stringBuilder
@@ -185,7 +186,6 @@ public class CreateVariant implements HttpFunction {
                                     .build()))
                     .build();
 
-// Post the ProductUpdate and return the updated Product
             updatedProduct = apiRoot
                     .products()
                     .withId(productToUpdate.getId())
@@ -193,7 +193,6 @@ public class CreateVariant implements HttpFunction {
                     .executeBlocking()
                     .getBody();
 
-// Output the updated Product's key
             String updatedProductKey = updatedProduct.getKey();
             System.out.println(updatedProductKey);
 
@@ -218,7 +217,6 @@ public class CreateVariant implements HttpFunction {
                                     .build()))
                     .build();
 
-// Post the ProductUpdate and return the updated Product
             Product updatedProduct = apiRoot
                     .products()
                     .withId(productToUpdate.getId())
@@ -226,7 +224,6 @@ public class CreateVariant implements HttpFunction {
                     .executeBlocking()
                     .getBody();
 
-// Output the updated Product's key
             String updatedProductKey = updatedProduct.getKey();
             System.out.println(updatedProductKey);
 
