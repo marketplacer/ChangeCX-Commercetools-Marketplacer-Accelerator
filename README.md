@@ -31,7 +31,7 @@ The integration between Marketplacer and commercetools can be represented by a h
 
 - Event: Triggers the flow of information between Marketplacer and commercetools, such as the creation or update of a product variant.
 
-- Json Payload: This can be Product, variant, invoice, seller information, etc. The data that is shared between Marketplacer and commercetools to ensure consistency and accuracy.
+- JSON Payload: This can be Product, variant, invoice, seller information, etc. The data that is shared between Marketplacer and commercetools to ensure consistency and accuracy.
 
 - Function: The endpoint that receives a JSON object containing the information from Marketplacer through the webhook. This endpoint can be implemented using different technologies such as Google Cloud Function, AWS Lambda, an on-premises web service or using a pipeline workflow.
 
