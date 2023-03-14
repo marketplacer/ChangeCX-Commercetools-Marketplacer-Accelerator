@@ -35,7 +35,7 @@ The integration between Marketplacer and commercetools can be represented by a h
 
 - Function: The endpoint that receives a JSON object containing the information from Marketplacer through the webhook. This endpoint can be implemented using different technologies such as Google Cloud Function, AWS Lambda, an on-premises web service or using a pipeline workflow.
 
-![image](https://user-images.githubusercontent.com/118915499/222575143-0c2ad9c7-8daf-432c-8bca-08f95bd19702.png)
+![image](https://user-images.githubusercontent.com/118915499/225122330-71cde472-fae5-46af-ae2a-afeaaead75fd.png)
 
 The webhooks are configured using GraphQL queries to gather the necessary information from Marketplacer, this information is then sent to the Google Cloud Function endpoint in the form of a JSON object. This allows for the automatic creation, update, and deletion of products, variants and sellers on commercetools, reducing the need for manual input and increasing efficiency. The endpoint will use the commercetools Java API to communicate with commercetools and execute the required actions. The choice of the endpoint technology will depend on the specific needs and constraints of the organization.
 
