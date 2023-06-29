@@ -3,7 +3,7 @@
 
 ## Accelerator Description
 
-Marketplacer offers a webhook feature that enables connection to any external endpoint, allowing for the real-time sharing of information such as products, product variant(adverts), and seller updates. By utilizing this mechanism, Marketplacer can integrate with commercetools to create and promote products on a live commercetools frontend. This integration ensures that all updates are immediately reflected on the commercetools platform, aligning with the principles of the MACH alliance.
+Marketplacer offers a webhook feature that enables connection to any external endpoint, allowing for the real-time sharing of information such as products(adverts), product variants, and seller updates. By utilizing this mechanism, Marketplacer can integrate with commercetools to create and promote products on a live commercetools frontend. This integration ensures that all updates are immediately reflected on the commercetools platform, aligning with the principles of the MACH alliance.
 
 ## Benefits
 
