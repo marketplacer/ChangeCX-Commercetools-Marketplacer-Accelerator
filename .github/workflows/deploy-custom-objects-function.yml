@@ -17,11 +17,11 @@ jobs:
     - name: Authenticate with GCP
       run: |
         echo "$GOOGLE_APPLICATION_CREDENTIALS" > /tmp/service-account.json
-        gcloud auth activate-service-account --key-file /tmp/service-account.json      
+        gcloud auth activate-service-account --key-file /tmp/service-account.json
       env:
         GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
     - name: Deploy CreateCustomObjectsFunction
       run:  |
-          gcloud functions deploy --project marketplacer-ct-poc --runtime java11 --entry-point functions.CreateCustomObject CreateCustomObjectsFunction --source CreateCustomObjectsFunction --trigger-http --allow-unauthenticated --quiet
+          gcloud functions deploy --project ct-connect-dev --runtime java11 --entry-point functions.CreateCustomObject CreateCustomObjectsFunction --source CreateCustomObjectsFunction --trigger-http --allow-unauthenticated --quiet
       env:
         GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}

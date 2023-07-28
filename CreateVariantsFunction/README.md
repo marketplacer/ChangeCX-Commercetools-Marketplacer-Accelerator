@@ -1,2 +1,2 @@
 # Create Variants Function
-This function will be update/create commercetools products and variants
+This function will update/create commercetools products and variants
